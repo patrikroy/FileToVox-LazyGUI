@@ -44,7 +44,7 @@ namespace FileToVox_LazyGUI
             else
             {
                 // Input file has been chosen
-                inputPathDisplay = " \"" + inputPathFull + "\""; // get input file display from user's choice
+                inputPathDisplay = " --i \"" + inputPathFull + "\""; // get input file display from user's choice
                 outputFilenameNoExt = System.IO.Path.GetFileNameWithoutExtension(inputPathFull); // get output filename from input filename without extension
                 
                 // Does output directory has been chosen?
@@ -52,12 +52,12 @@ namespace FileToVox_LazyGUI
                 {
                     // No, so make it the same as inputPathFull, without file extension
                     outputPath = System.IO.Path.GetDirectoryName(inputPathFull);
-                    outputPathDisplay = " \"" + outputPath + "\\" + outputFilenameNoExt + "\"";
+                    outputPathDisplay = " --o \"" + outputPath + "\\" + outputFilenameNoExt + "\"";
                 }
                 else
                 {
                     // Yes, so keep the user's choice
-                    outputPathDisplay = " \"" + outputPath + outputFilenameNoExt + "\"";
+                    outputPathDisplay = " --o \"" + outputPath + outputFilenameNoExt + "\"";
                 }
                 
             }

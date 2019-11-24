@@ -329,8 +329,9 @@
             this.Controls.Add(this.textBox_outputFile);
             this.Controls.Add(this.textBox_inputFile);
             this.Controls.Add(this.label_inputfile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "FileToVox LazyGUI";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
