@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox Lazy GUI v0.1
-// PatrikRoy 11/2019
+// FileToVox Lazy GUI v0.2
+// PatrikRoy 12/2019
 
 namespace FileToVox_LazyGUI
 {
@@ -27,6 +27,10 @@ namespace FileToVox_LazyGUI
         string outputPath;
         string outputFilenameNoExt;
         string outputPathDisplay;
+        string checkHelp;
+        string checkVerbose;
+        string checkExcavate;
+        string pngHeightmap;
 
         public Form1()
         {
@@ -40,6 +44,7 @@ namespace FileToVox_LazyGUI
             if (string.IsNullOrEmpty(inputPathFull))
             {
                 // Input file is not selected, display nothing
+                // checkHelp = checkVerbose = checkExcavate = "";
             }
             else
             {
@@ -62,7 +67,7 @@ namespace FileToVox_LazyGUI
                 
             }
 
-            outputCmd = f2vPathFull + inputPathDisplay + outputPathDisplay; // build outputCmd from displays
+            outputCmd = f2vPathFull + checkHelp + checkVerbose + checkExcavate + pngHeightmap + inputPathDisplay + outputPathDisplay; // build outputCmd from displays
             textBox_outputCmd.Text = outputCmd;
         }
 
@@ -135,6 +140,42 @@ namespace FileToVox_LazyGUI
                 updateOutputCmd();
             }
         }
+
+
+
+        // Checkbox "Help"
+        private void checkBox_help_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_help.Checked) { checkHelp = " --h"; } else { checkHelp = ""; }
+            updateOutputCmd();
+        }
+
+        // Checkbox "Verbose"
+        private void checkBox_verbose_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_verbose.Checked) { checkVerbose = " --v"; } else { checkVerbose = ""; }
+            updateOutputCmd();
+        }
+
+        // Checkbox "Excavate"
+        private void checkBox_excavate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_excavate.Checked) { checkExcavate = " --e"; } else { checkExcavate = ""; }
+            updateOutputCmd();
+        }
+
+
+        // PNG
+        // heightmap
+        private void textBox_pngHeightmap_TextChanged(object sender, EventArgs e)
+        {
+            pngHeightmap = textBox_pngHeightmap.Text;
+            pngHeightmap = " --hm " + pngHeightmap;
+            if (textBox_pngHeightmap.Text == "" ) { pngHeightmap = ""; }
+            updateOutputCmd();
+        }
+
+
         private void button_cc_Click(object sender, EventArgs e)
         {
             // copy to clipboard
@@ -172,6 +213,10 @@ namespace FileToVox_LazyGUI
             System.Diagnostics.Process.Start("https://mvc.wiki/");
         }
 
+        private void textBox_f2vPath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
-
