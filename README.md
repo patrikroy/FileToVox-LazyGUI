@@ -1,4 +1,4 @@
 # FileToVox-LazyGUI
 A minimal GUI* for Zarbuz's FileToVox
 
-* Graphical User Interface
+_* Graphical User Interface_
