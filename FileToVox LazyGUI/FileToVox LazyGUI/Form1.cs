@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox Lazy GUI v0.2
+// FileToVox LazyGUI v0.2
 // PatrikRoy 12/2019
+// DISCLAIMER: I'm no coder, prepare to facepalm.
 
 namespace FileToVox_LazyGUI
 {
@@ -27,24 +28,35 @@ namespace FileToVox_LazyGUI
         string outputPath;
         string outputFilenameNoExt;
         string outputPathDisplay;
-        string checkHelp;
-        string checkVerbose;
-        string checkExcavate;
-        string pngHeightmap;
+        string chkHelp;
+        string chkVerbose;
+        string chk_schematicWay;
+        string schematicIminy;
+        string schematicImaxy;
+        string chkExcavate;
+        string scale;
+        string pngHmValue;
+        string chk_pngHmColor;
+        string pngColorFilePathFull;
+        string pngColorFilePathDisplay;
+        string objGridSize;
+        string objSlowValue;
+
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        // Function: update command line
+        // --------------------------- Functions ---------------------------
+        // Update command line
         public void updateOutputCmd()
         {
             // get *Path*
+            // input
             if (string.IsNullOrEmpty(inputPathFull))
             {
                 // Input file is not selected, display nothing
-                // checkHelp = checkVerbose = checkExcavate = "";
             }
             else
             {
@@ -66,14 +78,34 @@ namespace FileToVox_LazyGUI
                 }
                 
             }
+            // pngColorFile
+            if (string.IsNullOrEmpty(pngColorFilePathFull))
+            {
+                // Color file is not selected, display nothing
+            }
+            else
+            {
+                // Color file has been chosen
+                pngColorFilePathDisplay = " --cm \"" + pngColorFilePathFull + "\""; // get color file display from user's choice
+            }
 
-            outputCmd = f2vPathFull + checkHelp + checkVerbose + checkExcavate + pngHeightmap + inputPathDisplay + outputPathDisplay; // build outputCmd from displays
+            // build outputCmd from displays
+            outputCmd = f2vPathFull 
+                + chkHelp + chkVerbose 
+                + chk_schematicWay + schematicIminy + schematicImaxy 
+                + chkExcavate 
+                + scale
+                + pngHmValue + chk_pngHmColor + pngColorFilePathDisplay 
+                + objGridSize + objSlowValue 
+                + inputPathDisplay + outputPathDisplay;
             textBox_outputCmd.Text = outputCmd;
         }
 
+
+        // ---------------------------- Events --------------------------------
+        // FileToVox path
         private void textBox_f2vPath_Click(object sender, EventArgs e)
         {
-            // FileToVox path
             OpenFileDialog f2vPathDialog = new OpenFileDialog
             {
                 InitialDirectory = defaultGUIPath,
@@ -95,9 +127,9 @@ namespace FileToVox_LazyGUI
             }
         }
 
+        // Input file path
         private void textBox_inputfile_Click(object sender, EventArgs e)
         {
-            // Input file path
             OpenFileDialog inputFileDialog = new OpenFileDialog
             {
                 InitialDirectory = myCompPath,
@@ -107,7 +139,7 @@ namespace FileToVox_LazyGUI
                 CheckPathExists = true,
 
                 DefaultExt = "png",
-                Filter = "FileToVox files (*.schematic, *.png, *.asc, *.binvox, *.qb, *.ply, *.xyz) | *.schematic; *.png; *.asc; *.binvox; *.qb; *.ply; *.xyz",
+                Filter = "FileToVox files (*.schematic, *.png, *.asc, *.binvox, *.obj, *.qb, *.ply, *.xyz) | *.schematic; *.png; *.asc; *.binvox; *.obj; *.qb; *.ply; *.xyz",
                 FilterIndex = 1,
                 RestoreDirectory = true,
 
@@ -122,9 +154,9 @@ namespace FileToVox_LazyGUI
             }
         }
 
+        // Output file path
         private void textBox_outputfile_Click(object sender, EventArgs e)
         {
-            // Output file path
             FolderBrowserDialog outputFileDialog = new FolderBrowserDialog
             {
                 Description = "Output file",
@@ -141,58 +173,137 @@ namespace FileToVox_LazyGUI
             }
         }
 
-
-
-        // Checkbox "Help"
+        // Checkbox: Help
         private void checkBox_help_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_help.Checked) { checkHelp = " --h"; } else { checkHelp = ""; }
+            if (checkBox_help.Checked) { chkHelp = " --h"; } else { chkHelp = ""; }
             updateOutputCmd();
         }
 
-        // Checkbox "Verbose"
+        // Checkbox: Verbose
         private void checkBox_verbose_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_verbose.Checked) { checkVerbose = " --v"; } else { checkVerbose = ""; }
+            if (checkBox_verbose.Checked) { chkVerbose = " --v"; } else { chkVerbose = ""; }
             updateOutputCmd();
         }
 
-        // Checkbox "Excavate"
+        // Schematic
+        // Checkbox: Way
+        private void checkBox_schematicWay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_schematicWay.Checked) { chk_schematicWay = " --w 1"; } else { chk_schematicWay = ""; }
+            updateOutputCmd();
+        }
+        // Value: Iminy
+        private void textBox_schematicIminy_TextChanged(object sender, EventArgs e)
+        {
+            schematicIminy = textBox_schematicIminy.Text;
+            schematicIminy = " --iminy " + schematicIminy;
+            if (textBox_schematicIminy.Text == "") { schematicIminy = ""; }
+            updateOutputCmd();
+        }
+        // Value: Imaxy
+        private void textBox_schematicImaxy_TextChanged(object sender, EventArgs e)
+        {
+            schematicImaxy = textBox_schematicImaxy.Text;
+            schematicImaxy = " --imaxy " + schematicImaxy;
+            if (textBox_schematicImaxy.Text == "") { schematicImaxy = ""; }
+            updateOutputCmd();
+        }
+
+        // Checkbox: Excavate
         private void checkBox_excavate_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_excavate.Checked) { checkExcavate = " --e"; } else { checkExcavate = ""; }
+            if (checkBox_excavate.Checked) { chkExcavate = " --e"; } else { chkExcavate = ""; }
             updateOutputCmd();
         }
 
+        // Value: Scale
+        private void textBox_scale_TextChanged(object sender, EventArgs e)
+        {
+            scale = textBox_scale.Text;
+            scale = " --s " + scale;
+            if (textBox_scale.Text == "") { scale = ""; }
+            updateOutputCmd();
+        }
 
         // PNG
-        // heightmap
-        private void textBox_pngHeightmap_TextChanged(object sender, EventArgs e)
+        // heightmap value
+        private void textBox_pngHmValue_TextChanged(object sender, EventArgs e)
         {
-            pngHeightmap = textBox_pngHeightmap.Text;
-            pngHeightmap = " --hm " + pngHeightmap;
-            if (textBox_pngHeightmap.Text == "" ) { pngHeightmap = ""; }
+            pngHmValue = textBox_pngHmValue.Text;
+            pngHmValue = " --hm " + pngHmValue;
+            if (textBox_pngHmValue.Text == "" ) { pngHmValue = ""; }
+            updateOutputCmd();
+        }
+        // heightmap enable color
+        private void checkBox_pngHmColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_pngHmColor.Checked) { chk_pngHmColor = " --c"; } else { chk_pngHmColor = ""; }
+            updateOutputCmd();
+        }
+        // Color file
+        private void textBox_pngColorFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog pngColorFilePathDialog = new OpenFileDialog
+            {
+                InitialDirectory = defaultGUIPath,
+                Title = "Color file location",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                Filter = "PNG image (*.png) | *.png",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+
+                ShowReadOnly = false
+            };
+
+            if (pngColorFilePathDialog.ShowDialog() == DialogResult.OK || pngColorFilePathDialog.ShowDialog() == DialogResult.Yes)
+            {
+                textBox_pngColorFile.Text = pngColorFilePathFull = pngColorFilePathDialog.FileName;
+                updateOutputCmd();
+            }
+        }
+
+        // OBJ
+        // Grid size
+        private void textBox_objGridSize_TextChanged(object sender, EventArgs e)
+        {
+            objGridSize = textBox_objGridSize.Text;
+            objGridSize = " --gs " + objGridSize;
+            if (textBox_objGridSize.Text == "") { objGridSize = ""; }
+            updateOutputCmd();
+        }
+        // Slow value
+        private void textBox_objSlowValue_TextChanged(object sender, EventArgs e)
+        {
+            objSlowValue = textBox_objSlowValue.Text;
+            objSlowValue = " --slow=" + objSlowValue;
+            if (textBox_objSlowValue.Text == "") { objSlowValue = ""; }
             updateOutputCmd();
         }
 
 
+        // --------------------------- Buttons --------------------------------
+        // Copy to clipboard
         private void button_cc_Click(object sender, EventArgs e)
         {
-            // copy to clipboard
             Clipboard.SetText(outputCmd);
         }
 
+        // Launch cmd.exe
         private void button_cmd_Click(object sender, EventArgs e)
         {
-            // launch cmd.exe
             Process cmd_f2v = new Process();
             cmd_f2v.StartInfo.FileName = @"cmd.exe";
             cmd_f2v.Start();
             cmd_f2v.WaitForExit();
         }
 
-        //-----------------------------------------------------------
-        // Links
+
+        // ---------------------------- Links ----------------------------------
         private void linkZarbuz_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Zarbuz");
