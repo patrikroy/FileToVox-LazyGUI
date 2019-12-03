@@ -52,9 +52,9 @@ namespace FileToVox_LazyGUI
         // Update command line
         public void updateOutputCmd()
         {
-            // get *Path*
-            // input
-            if (string.IsNullOrEmpty(inputPathFull))
+                // get *Path*
+                // input
+                if (string.IsNullOrEmpty(inputPathFull))
             {
                 // Input file is not selected, display nothing
             }
@@ -90,7 +90,7 @@ namespace FileToVox_LazyGUI
             }
 
             // build outputCmd from displays
-            outputCmd = f2vPathFull 
+            outputCmd = "\"" + f2vPathFull + "\"" 
                 + chkHelp + chkVerbose 
                 + chk_schematicWay + schematicIminy + schematicImaxy 
                 + chkExcavate 
@@ -298,6 +298,17 @@ namespace FileToVox_LazyGUI
         {
             Process cmd_f2v = new Process();
             cmd_f2v.StartInfo.FileName = @"cmd.exe";
+            cmd_f2v.Start();
+            cmd_f2v.WaitForExit();
+        }
+
+
+        // autocmd test
+        private void button_cmdTest_Click(object sender, EventArgs e)
+        {
+            Process cmd_f2v = new Process();
+            cmd_f2v.StartInfo.FileName = @"C:\windows\system32\cmd.exe";
+            cmd_f2v.StartInfo.Arguments = "/k " + outputCmd;
             cmd_f2v.Start();
             cmd_f2v.WaitForExit();
         }

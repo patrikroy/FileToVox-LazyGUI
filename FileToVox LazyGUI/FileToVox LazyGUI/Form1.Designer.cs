@@ -60,23 +60,24 @@
             this.checkBox_excavate = new System.Windows.Forms.CheckBox();
             this.groupBox_png = new System.Windows.Forms.GroupBox();
             this.textBox_pngHmValue = new System.Windows.Forms.TextBox();
+            this.label_pngColorfile = new System.Windows.Forms.Label();
             this.label_pngHm = new System.Windows.Forms.Label();
             this.checkBox_pngHmColor = new System.Windows.Forms.CheckBox();
-            this.label_pngColorfile = new System.Windows.Forms.Label();
             this.textBox_pngColorFile = new System.Windows.Forms.TextBox();
             this.groupBox_schematic = new System.Windows.Forms.GroupBox();
-            this.checkBox_schematicWay = new System.Windows.Forms.CheckBox();
-            this.label_schematicIgnore1 = new System.Windows.Forms.Label();
-            this.textBox_schematicIminy = new System.Windows.Forms.TextBox();
             this.textBox_schematicImaxy = new System.Windows.Forms.TextBox();
+            this.textBox_schematicIminy = new System.Windows.Forms.TextBox();
+            this.checkBox_schematicWay = new System.Windows.Forms.CheckBox();
             this.label_schematicIgnore2 = new System.Windows.Forms.Label();
+            this.label_schematicIgnore1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_scale = new System.Windows.Forms.TextBox();
             this.groupBox_obj = new System.Windows.Forms.GroupBox();
-            this.label_objGrid = new System.Windows.Forms.Label();
-            this.textBox_objGridSize = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.textBox_objSlowValue = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_objGridSize = new System.Windows.Forms.TextBox();
+            this.label_objGrid = new System.Windows.Forms.Label();
+            this.button_cmdTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_png.SuspendLayout();
             this.groupBox_schematic.SuspendLayout();
@@ -397,6 +398,15 @@
             this.textBox_pngHmValue.TabIndex = 0;
             this.textBox_pngHmValue.TextChanged += new System.EventHandler(this.textBox_pngHmValue_TextChanged);
             // 
+            // label_pngColorfile
+            // 
+            this.label_pngColorfile.AutoSize = true;
+            this.label_pngColorfile.Location = new System.Drawing.Point(6, 41);
+            this.label_pngColorfile.Name = "label_pngColorfile";
+            this.label_pngColorfile.Size = new System.Drawing.Size(70, 13);
+            this.label_pngColorfile.TabIndex = 17;
+            this.label_pngColorfile.Text = "Color from file";
+            // 
             // label_pngHm
             // 
             this.label_pngHm.AutoSize = true;
@@ -416,15 +426,6 @@
             this.checkBox_pngHmColor.Text = "enable color";
             this.checkBox_pngHmColor.UseVisualStyleBackColor = true;
             this.checkBox_pngHmColor.CheckedChanged += new System.EventHandler(this.checkBox_pngHmColor_CheckedChanged);
-            // 
-            // label_pngColorfile
-            // 
-            this.label_pngColorfile.AutoSize = true;
-            this.label_pngColorfile.Location = new System.Drawing.Point(6, 41);
-            this.label_pngColorfile.Name = "label_pngColorfile";
-            this.label_pngColorfile.Size = new System.Drawing.Size(70, 13);
-            this.label_pngColorfile.TabIndex = 17;
-            this.label_pngColorfile.Text = "Color from file";
             // 
             // textBox_pngColorFile
             // 
@@ -448,25 +449,15 @@
             this.groupBox_schematic.TabStop = false;
             this.groupBox_schematic.Text = "Schematic";
             // 
-            // checkBox_schematicWay
+            // textBox_schematicImaxy
             // 
-            this.checkBox_schematicWay.AutoSize = true;
-            this.checkBox_schematicWay.Location = new System.Drawing.Point(10, 19);
-            this.checkBox_schematicWay.Name = "checkBox_schematicWay";
-            this.checkBox_schematicWay.Size = new System.Drawing.Size(45, 17);
-            this.checkBox_schematicWay.TabIndex = 34;
-            this.checkBox_schematicWay.Text = "way";
-            this.checkBox_schematicWay.UseVisualStyleBackColor = true;
-            this.checkBox_schematicWay.CheckedChanged += new System.EventHandler(this.checkBox_schematicWay_CheckedChanged);
-            // 
-            // label_schematicIgnore1
-            // 
-            this.label_schematicIgnore1.AutoSize = true;
-            this.label_schematicIgnore1.Location = new System.Drawing.Point(70, 20);
-            this.label_schematicIgnore1.Name = "label_schematicIgnore1";
-            this.label_schematicIgnore1.Size = new System.Drawing.Size(104, 13);
-            this.label_schematicIgnore1.TabIndex = 17;
-            this.label_schematicIgnore1.Text = "ignore blocks below:";
+            this.textBox_schematicImaxy.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_schematicImaxy.Location = new System.Drawing.Point(274, 17);
+            this.textBox_schematicImaxy.MaxLength = 16;
+            this.textBox_schematicImaxy.Name = "textBox_schematicImaxy";
+            this.textBox_schematicImaxy.Size = new System.Drawing.Size(60, 20);
+            this.textBox_schematicImaxy.TabIndex = 0;
+            this.textBox_schematicImaxy.TextChanged += new System.EventHandler(this.textBox_schematicImaxy_TextChanged);
             // 
             // textBox_schematicIminy
             // 
@@ -478,15 +469,16 @@
             this.textBox_schematicIminy.TabIndex = 0;
             this.textBox_schematicIminy.TextChanged += new System.EventHandler(this.textBox_schematicIminy_TextChanged);
             // 
-            // textBox_schematicImaxy
+            // checkBox_schematicWay
             // 
-            this.textBox_schematicImaxy.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_schematicImaxy.Location = new System.Drawing.Point(274, 17);
-            this.textBox_schematicImaxy.MaxLength = 16;
-            this.textBox_schematicImaxy.Name = "textBox_schematicImaxy";
-            this.textBox_schematicImaxy.Size = new System.Drawing.Size(60, 20);
-            this.textBox_schematicImaxy.TabIndex = 0;
-            this.textBox_schematicImaxy.TextChanged += new System.EventHandler(this.textBox_schematicImaxy_TextChanged);
+            this.checkBox_schematicWay.AutoSize = true;
+            this.checkBox_schematicWay.Location = new System.Drawing.Point(10, 19);
+            this.checkBox_schematicWay.Name = "checkBox_schematicWay";
+            this.checkBox_schematicWay.Size = new System.Drawing.Size(45, 17);
+            this.checkBox_schematicWay.TabIndex = 34;
+            this.checkBox_schematicWay.Text = "way";
+            this.checkBox_schematicWay.UseVisualStyleBackColor = true;
+            this.checkBox_schematicWay.CheckedChanged += new System.EventHandler(this.checkBox_schematicWay_CheckedChanged);
             // 
             // label_schematicIgnore2
             // 
@@ -496,6 +488,15 @@
             this.label_schematicIgnore2.Size = new System.Drawing.Size(40, 13);
             this.label_schematicIgnore2.TabIndex = 17;
             this.label_schematicIgnore2.Text = "above:";
+            // 
+            // label_schematicIgnore1
+            // 
+            this.label_schematicIgnore1.AutoSize = true;
+            this.label_schematicIgnore1.Location = new System.Drawing.Point(70, 20);
+            this.label_schematicIgnore1.Name = "label_schematicIgnore1";
+            this.label_schematicIgnore1.Size = new System.Drawing.Size(104, 13);
+            this.label_schematicIgnore1.TabIndex = 17;
+            this.label_schematicIgnore1.Text = "ignore blocks below:";
             // 
             // label6
             // 
@@ -529,14 +530,24 @@
             this.groupBox_obj.TabStop = false;
             this.groupBox_obj.Text = "OBJ";
             // 
-            // label_objGrid
+            // textBox_objSlowValue
             // 
-            this.label_objGrid.AutoSize = true;
-            this.label_objGrid.Location = new System.Drawing.Point(6, 20);
-            this.label_objGrid.Name = "label_objGrid";
-            this.label_objGrid.Size = new System.Drawing.Size(50, 13);
-            this.label_objGrid.TabIndex = 17;
-            this.label_objGrid.Text = "Grid size:";
+            this.textBox_objSlowValue.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_objSlowValue.Location = new System.Drawing.Point(195, 17);
+            this.textBox_objSlowValue.MaxLength = 16;
+            this.textBox_objSlowValue.Name = "textBox_objSlowValue";
+            this.textBox_objSlowValue.Size = new System.Drawing.Size(60, 20);
+            this.textBox_objSlowValue.TabIndex = 0;
+            this.textBox_objSlowValue.TextChanged += new System.EventHandler(this.textBox_objSlowValue_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(131, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Slow value:";
             // 
             // textBox_objGridSize
             // 
@@ -548,24 +559,25 @@
             this.textBox_objGridSize.TabIndex = 0;
             this.textBox_objGridSize.TextChanged += new System.EventHandler(this.textBox_objGridSize_TextChanged);
             // 
-            // label5
+            // label_objGrid
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(131, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Slow value:";
+            this.label_objGrid.AutoSize = true;
+            this.label_objGrid.Location = new System.Drawing.Point(6, 20);
+            this.label_objGrid.Name = "label_objGrid";
+            this.label_objGrid.Size = new System.Drawing.Size(50, 13);
+            this.label_objGrid.TabIndex = 17;
+            this.label_objGrid.Text = "Grid size:";
             // 
-            // textBox_objSlowValue
+            // button_cmdTest
             // 
-            this.textBox_objSlowValue.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_objSlowValue.Location = new System.Drawing.Point(195, 17);
-            this.textBox_objSlowValue.MaxLength = 16;
-            this.textBox_objSlowValue.Name = "textBox_objSlowValue";
-            this.textBox_objSlowValue.Size = new System.Drawing.Size(60, 20);
-            this.textBox_objSlowValue.TabIndex = 0;
-            this.textBox_objSlowValue.TextChanged += new System.EventHandler(this.textBox_objSlowValue_TextChanged);
+            this.button_cmdTest.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_cmdTest.Location = new System.Drawing.Point(252, 408);
+            this.button_cmdTest.Name = "button_cmdTest";
+            this.button_cmdTest.Size = new System.Drawing.Size(127, 41);
+            this.button_cmdTest.TabIndex = 20;
+            this.button_cmdTest.Text = "autocmd test";
+            this.button_cmdTest.UseVisualStyleBackColor = true;
+            this.button_cmdTest.Click += new System.EventHandler(this.button_cmdTest_Click);
             // 
             // Form1
             // 
@@ -598,6 +610,7 @@
             this.Controls.Add(this.textBox_f2vPath);
             this.Controls.Add(this.label_1);
             this.Controls.Add(this.label_title);
+            this.Controls.Add(this.button_cmdTest);
             this.Controls.Add(this.button_cmd);
             this.Controls.Add(this.label_4);
             this.Controls.Add(this.label_3);
@@ -669,6 +682,7 @@
         private System.Windows.Forms.Label label_objGrid;
         private System.Windows.Forms.TextBox textBox_objSlowValue;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button_cmdTest;
     }
 }
 
