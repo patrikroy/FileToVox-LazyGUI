@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox LazyGUI v0.2
-// PatrikRoy 12/2019
+// FileToVox LazyGUI v0.3
+// PatrikRoy 12/2019 (https://mvc.wiki/m/User:PatrikRoy)
 // DISCLAIMER: I'm no coder, prepare to facepalm.
 
 namespace FileToVox_LazyGUI
@@ -28,12 +28,12 @@ namespace FileToVox_LazyGUI
         string outputPath;
         string outputFilenameNoExt;
         string outputPathDisplay;
-        string chkHelp;
-        string chkVerbose;
+        string chk_Help;
+        string chk_Verbose;
         string chk_schematicWay;
         string schematicIminy;
         string schematicImaxy;
-        string chkExcavate;
+        string chk_Excavate;
         string scale;
         string pngHmValue;
         string chk_pngHmColor;
@@ -52,8 +52,8 @@ namespace FileToVox_LazyGUI
         // Update command line
         public void updateOutputCmd()
         {
-                // get *Path*
-                // input
+                // Get *Path*
+                // Input
                 if (string.IsNullOrEmpty(inputPathFull))
             {
                 // Input file is not selected, display nothing
@@ -90,21 +90,21 @@ namespace FileToVox_LazyGUI
             }
 
             // build outputCmd from displays
-            outputCmd = "\"" + f2vPathFull + "\"" 
-                + chkHelp + chkVerbose 
+            outputCmd = f2vPathFull  // BUG REPORT: adding quotation marks to this path breaks cmd.exe...
+                + chk_Help + chk_Verbose 
                 + chk_schematicWay + schematicIminy + schematicImaxy 
-                + chkExcavate 
+                + chk_Excavate 
                 + scale
                 + pngHmValue + chk_pngHmColor + pngColorFilePathDisplay 
                 + objGridSize + objSlowValue 
-                + inputPathDisplay + outputPathDisplay;
+                + inputPathDisplay + outputPathDisplay; // ...but adding quotation marks to these paths isn't a problem :/
             textBox_outputCmd.Text = outputCmd;
         }
 
 
         // ---------------------------- Events --------------------------------
         // FileToVox path
-        private void textBox_f2vPath_Click(object sender, EventArgs e)
+        private void button_f2vPath_Click(object sender, EventArgs e)
         {
             OpenFileDialog f2vPathDialog = new OpenFileDialog
             {
@@ -128,7 +128,7 @@ namespace FileToVox_LazyGUI
         }
 
         // Input file path
-        private void textBox_inputfile_Click(object sender, EventArgs e)
+        private void button_inputFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog inputFileDialog = new OpenFileDialog
             {
@@ -155,7 +155,7 @@ namespace FileToVox_LazyGUI
         }
 
         // Output file path
-        private void textBox_outputfile_Click(object sender, EventArgs e)
+        private void button_outputFile_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog outputFileDialog = new FolderBrowserDialog
             {
@@ -176,14 +176,14 @@ namespace FileToVox_LazyGUI
         // Checkbox: Help
         private void checkBox_help_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_help.Checked) { chkHelp = " --h"; } else { chkHelp = ""; }
+            if (checkBox_help.Checked) { chk_Help = " --h"; } else { chk_Help = ""; }
             updateOutputCmd();
         }
 
         // Checkbox: Verbose
         private void checkBox_verbose_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_verbose.Checked) { chkVerbose = " --v"; } else { chkVerbose = ""; }
+            if (checkBox_verbose.Checked) { chk_Verbose = " --v"; } else { chk_Verbose = ""; }
             updateOutputCmd();
         }
 
@@ -214,7 +214,7 @@ namespace FileToVox_LazyGUI
         // Checkbox: Excavate
         private void checkBox_excavate_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_excavate.Checked) { chkExcavate = " --e"; } else { chkExcavate = ""; }
+            if (checkBox_excavate.Checked) { chk_Excavate = " --e"; } else { chk_Excavate = ""; }
             updateOutputCmd();
         }
 
@@ -243,7 +243,7 @@ namespace FileToVox_LazyGUI
             updateOutputCmd();
         }
         // Color file
-        private void textBox_pngColorFile_Click(object sender, EventArgs e)
+        private void button_pngColorFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog pngColorFilePathDialog = new OpenFileDialog
             {
@@ -297,20 +297,20 @@ namespace FileToVox_LazyGUI
         private void button_cmd_Click(object sender, EventArgs e)
         {
             Process cmd_f2v = new Process();
-            cmd_f2v.StartInfo.FileName = @"cmd.exe";
+            cmd_f2v.StartInfo.FileName = "cmd.exe";
             cmd_f2v.Start();
             cmd_f2v.WaitForExit();
         }
 
 
-        // autocmd test
-        private void button_cmdTest_Click(object sender, EventArgs e)
+        // Convert
+        private void button_convert_Click(object sender, EventArgs e)
         {
-            Process cmd_f2v = new Process();
-            cmd_f2v.StartInfo.FileName = @"C:\windows\system32\cmd.exe";
-            cmd_f2v.StartInfo.Arguments = "/k " + outputCmd;
-            cmd_f2v.Start();
-            cmd_f2v.WaitForExit();
+            Process convert = new Process();
+            convert.StartInfo.FileName = "cmd.exe";
+            convert.StartInfo.Arguments = "/k " + outputCmd;
+            convert.Start();
+            convert.WaitForExit();
         }
 
 
