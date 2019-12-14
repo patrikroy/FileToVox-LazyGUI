@@ -78,6 +78,9 @@
             this.button_inputfile = new System.Windows.Forms.Button();
             this.button_outputfile = new System.Windows.Forms.Button();
             this.label_5 = new System.Windows.Forms.Label();
+            this.label_dashInput = new System.Windows.Forms.Label();
+            this.label_dashOutput = new System.Windows.Forms.Label();
+            this.textBox_debug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_png.SuspendLayout();
             this.groupBox_schematic.SuspendLayout();
@@ -204,7 +207,7 @@
             this.label_ver.Name = "label_ver";
             this.label_ver.Size = new System.Drawing.Size(28, 13);
             this.label_ver.TabIndex = 23;
-            this.label_ver.Text = "v0.3";
+            this.label_ver.Text = "v1.0";
             this.label_ver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox_outputCmd
@@ -223,6 +226,7 @@
             this.textBox_f2vPath.Name = "textBox_f2vPath";
             this.textBox_f2vPath.Size = new System.Drawing.Size(334, 20);
             this.textBox_f2vPath.TabIndex = 14;
+            this.textBox_f2vPath.TextChanged += new System.EventHandler(this.textBox_f2vPath_TextChanged);
             // 
             // label_1
             // 
@@ -230,9 +234,9 @@
             this.label_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_1.Location = new System.Drawing.Point(13, 48);
             this.label_1.Name = "label_1";
-            this.label_1.Size = new System.Drawing.Size(135, 13);
+            this.label_1.Size = new System.Drawing.Size(111, 13);
             this.label_1.TabIndex = 12;
-            this.label_1.Text = "1 - FileToVox location:";
+            this.label_1.Text = "1 - FileToVox path";
             // 
             // openFileDialog_inputfile
             // 
@@ -254,9 +258,9 @@
             this.label_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_3.Location = new System.Drawing.Point(13, 100);
             this.label_3.Name = "label_3";
-            this.label_3.Size = new System.Drawing.Size(117, 13);
+            this.label_3.Size = new System.Drawing.Size(114, 13);
             this.label_3.TabIndex = 17;
-            this.label_3.Text = "3 - Output location:";
+            this.label_3.Text = "3 - Output file path";
             // 
             // textBox_outputFile
             // 
@@ -264,6 +268,7 @@
             this.textBox_outputFile.Name = "textBox_outputFile";
             this.textBox_outputFile.Size = new System.Drawing.Size(334, 20);
             this.textBox_outputFile.TabIndex = 13;
+            this.textBox_outputFile.TextChanged += new System.EventHandler(this.textBox_outputFile_TextChanged);
             // 
             // textBox_inputFile
             // 
@@ -271,6 +276,7 @@
             this.textBox_inputFile.Name = "textBox_inputFile";
             this.textBox_inputFile.Size = new System.Drawing.Size(334, 20);
             this.textBox_inputFile.TabIndex = 16;
+            this.textBox_inputFile.TextChanged += new System.EventHandler(this.textBox_inputFile_TextChanged);
             // 
             // label_2
             // 
@@ -278,9 +284,9 @@
             this.label_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_2.Location = new System.Drawing.Point(13, 75);
             this.label_2.Name = "label_2";
-            this.label_2.Size = new System.Drawing.Size(80, 13);
+            this.label_2.Size = new System.Drawing.Size(105, 13);
             this.label_2.TabIndex = 11;
-            this.label_2.Text = "2 - Input file:";
+            this.label_2.Text = "2 - Input file path";
             // 
             // label_4
             // 
@@ -288,9 +294,9 @@
             this.label_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_4.Location = new System.Drawing.Point(13, 126);
             this.label_4.Name = "label_4";
-            this.label_4.Size = new System.Drawing.Size(143, 13);
+            this.label_4.Size = new System.Drawing.Size(139, 13);
             this.label_4.TabIndex = 17;
-            this.label_4.Text = "4 - Optional parameters:";
+            this.label_4.Text = "4 - Optional parameters";
             // 
             // checkBox_help
             // 
@@ -365,18 +371,18 @@
             this.label_pngColorfile.AutoSize = true;
             this.label_pngColorfile.Location = new System.Drawing.Point(6, 41);
             this.label_pngColorfile.Name = "label_pngColorfile";
-            this.label_pngColorfile.Size = new System.Drawing.Size(73, 13);
+            this.label_pngColorfile.Size = new System.Drawing.Size(70, 13);
             this.label_pngColorfile.TabIndex = 17;
-            this.label_pngColorfile.Text = "Color from file:";
+            this.label_pngColorfile.Text = "Color from file";
             // 
             // label_pngHm
             // 
             this.label_pngHm.AutoSize = true;
             this.label_pngHm.Location = new System.Drawing.Point(6, 16);
             this.label_pngHm.Name = "label_pngHm";
-            this.label_pngHm.Size = new System.Drawing.Size(90, 13);
+            this.label_pngHm.Size = new System.Drawing.Size(87, 13);
             this.label_pngHm.TabIndex = 17;
-            this.label_pngHm.Text = "Heightmap value:";
+            this.label_pngHm.Text = "Heightmap value";
             // 
             // checkBox_pngHmColor
             // 
@@ -393,6 +399,7 @@
             // 
             this.textBox_pngColorFile.Location = new System.Drawing.Point(82, 38);
             this.textBox_pngColorFile.Name = "textBox_pngColorFile";
+            this.textBox_pngColorFile.ReadOnly = true;
             this.textBox_pngColorFile.Size = new System.Drawing.Size(246, 20);
             this.textBox_pngColorFile.TabIndex = 13;
             // 
@@ -446,27 +453,27 @@
             this.label_schematicIgnore2.AutoSize = true;
             this.label_schematicIgnore2.Location = new System.Drawing.Point(237, 20);
             this.label_schematicIgnore2.Name = "label_schematicIgnore2";
-            this.label_schematicIgnore2.Size = new System.Drawing.Size(40, 13);
+            this.label_schematicIgnore2.Size = new System.Drawing.Size(37, 13);
             this.label_schematicIgnore2.TabIndex = 17;
-            this.label_schematicIgnore2.Text = "above:";
+            this.label_schematicIgnore2.Text = "above";
             // 
             // label_schematicIgnore1
             // 
             this.label_schematicIgnore1.AutoSize = true;
             this.label_schematicIgnore1.Location = new System.Drawing.Point(70, 20);
             this.label_schematicIgnore1.Name = "label_schematicIgnore1";
-            this.label_schematicIgnore1.Size = new System.Drawing.Size(104, 13);
+            this.label_schematicIgnore1.Size = new System.Drawing.Size(101, 13);
             this.label_schematicIgnore1.TabIndex = 17;
-            this.label_schematicIgnore1.Text = "ignore blocks below:";
+            this.label_schematicIgnore1.Text = "ignore blocks below";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(397, 127);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Scale:";
+            this.label6.Text = "Scale";
             // 
             // textBox_scale
             // 
@@ -506,9 +513,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Slow value:";
+            this.label5.Text = "Slow value";
             // 
             // textBox_objGridSize
             // 
@@ -525,13 +532,13 @@
             this.label_objGrid.AutoSize = true;
             this.label_objGrid.Location = new System.Drawing.Point(6, 16);
             this.label_objGrid.Name = "label_objGrid";
-            this.label_objGrid.Size = new System.Drawing.Size(50, 13);
+            this.label_objGrid.Size = new System.Drawing.Size(47, 13);
             this.label_objGrid.TabIndex = 17;
-            this.label_objGrid.Text = "Grid size:";
+            this.label_objGrid.Text = "Grid size";
             // 
             // button_cmdTest
             // 
-            this.button_cmdTest.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_cmdTest.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_cmdTest.Location = new System.Drawing.Point(38, 336);
             this.button_cmdTest.Name = "button_cmdTest";
             this.button_cmdTest.Size = new System.Drawing.Size(115, 41);
@@ -580,14 +587,48 @@
             this.label_5.TabIndex = 18;
             this.label_5.Text = "5 -";
             // 
+            // label_dashInput
+            // 
+            this.label_dashInput.AutoSize = true;
+            this.label_dashInput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_dashInput.Location = new System.Drawing.Point(130, 73);
+            this.label_dashInput.Name = "label_dashInput";
+            this.label_dashInput.Size = new System.Drawing.Size(28, 15);
+            this.label_dashInput.TabIndex = 17;
+            this.label_dashInput.Text = "--i";
+            this.label_dashInput.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label_dashOutput
+            // 
+            this.label_dashOutput.AutoSize = true;
+            this.label_dashOutput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_dashOutput.Location = new System.Drawing.Point(130, 99);
+            this.label_dashOutput.Name = "label_dashOutput";
+            this.label_dashOutput.Size = new System.Drawing.Size(28, 15);
+            this.label_dashOutput.TabIndex = 17;
+            this.label_dashOutput.Text = "--o";
+            this.label_dashOutput.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBox_debug
+            // 
+            this.textBox_debug.Location = new System.Drawing.Point(601, 45);
+            this.textBox_debug.Multiline = true;
+            this.textBox_debug.Name = "textBox_debug";
+            this.textBox_debug.ReadOnly = true;
+            this.textBox_debug.Size = new System.Drawing.Size(621, 373);
+            this.textBox_debug.TabIndex = 39;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 431);
+            this.Controls.Add(this.textBox_debug);
             this.Controls.Add(this.button_outputfile);
             this.Controls.Add(this.button_inputfile);
             this.Controls.Add(this.button_f2vPath);
+            this.Controls.Add(this.label_dashOutput);
+            this.Controls.Add(this.label_dashInput);
             this.Controls.Add(this.groupBox_obj);
             this.Controls.Add(this.textBox_scale);
             this.Controls.Add(this.groupBox_schematic);
@@ -617,6 +658,7 @@
             this.Controls.Add(this.textBox_outputFile);
             this.Controls.Add(this.textBox_inputFile);
             this.Controls.Add(this.label_2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "FileToVox LazyGUI";
@@ -683,6 +725,9 @@
         private System.Windows.Forms.Button button_inputfile;
         private System.Windows.Forms.Button button_outputfile;
         private System.Windows.Forms.Label label_5;
+        private System.Windows.Forms.Label label_dashInput;
+        private System.Windows.Forms.Label label_dashOutput;
+        private System.Windows.Forms.TextBox textBox_debug;
     }
 }
 
