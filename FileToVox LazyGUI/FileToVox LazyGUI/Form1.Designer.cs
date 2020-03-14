@@ -81,6 +81,11 @@
             this.label_dashInput = new System.Windows.Forms.Label();
             this.label_dashOutput = new System.Windows.Forms.Label();
             this.textBox_debug = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox_colorlimit = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_png.SuspendLayout();
             this.groupBox_schematic.SuspendLayout();
@@ -207,7 +212,7 @@
             this.label_ver.Name = "label_ver";
             this.label_ver.Size = new System.Drawing.Size(28, 13);
             this.label_ver.TabIndex = 23;
-            this.label_ver.Text = "v1.0";
+            this.label_ver.Text = "v1.1";
             this.label_ver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox_outputCmd
@@ -314,16 +319,16 @@
             this.checkBox_verbose.AutoSize = true;
             this.checkBox_verbose.Location = new System.Drawing.Point(223, 126);
             this.checkBox_verbose.Name = "checkBox_verbose";
-            this.checkBox_verbose.Size = new System.Drawing.Size(91, 17);
+            this.checkBox_verbose.Size = new System.Drawing.Size(65, 17);
             this.checkBox_verbose.TabIndex = 34;
-            this.checkBox_verbose.Text = "Verbose (test)";
+            this.checkBox_verbose.Text = "Verbose";
             this.checkBox_verbose.UseVisualStyleBackColor = true;
             this.checkBox_verbose.CheckedChanged += new System.EventHandler(this.checkBox_verbose_CheckedChanged);
             // 
             // checkBox_excavate
             // 
             this.checkBox_excavate.AutoSize = true;
-            this.checkBox_excavate.Location = new System.Drawing.Point(320, 126);
+            this.checkBox_excavate.Location = new System.Drawing.Point(294, 126);
             this.checkBox_excavate.Name = "checkBox_excavate";
             this.checkBox_excavate.Size = new System.Drawing.Size(71, 17);
             this.checkBox_excavate.TabIndex = 34;
@@ -336,6 +341,7 @@
             this.groupBox_png.Controls.Add(this.button_pngColorFile);
             this.groupBox_png.Controls.Add(this.textBox_pngHmValue);
             this.groupBox_png.Controls.Add(this.label_pngColorfile);
+            this.groupBox_png.Controls.Add(this.label10);
             this.groupBox_png.Controls.Add(this.label_pngHm);
             this.groupBox_png.Controls.Add(this.checkBox_pngHmColor);
             this.groupBox_png.Controls.Add(this.textBox_pngColorFile);
@@ -360,9 +366,9 @@
             // 
             this.textBox_pngHmValue.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_pngHmValue.Location = new System.Drawing.Point(95, 13);
-            this.textBox_pngHmValue.MaxLength = 16;
+            this.textBox_pngHmValue.MaxLength = 4;
             this.textBox_pngHmValue.Name = "textBox_pngHmValue";
-            this.textBox_pngHmValue.Size = new System.Drawing.Size(60, 20);
+            this.textBox_pngHmValue.Size = new System.Drawing.Size(40, 20);
             this.textBox_pngHmValue.TabIndex = 0;
             this.textBox_pngHmValue.TextChanged += new System.EventHandler(this.textBox_pngHmValue_TextChanged);
             // 
@@ -387,11 +393,11 @@
             // checkBox_pngHmColor
             // 
             this.checkBox_pngHmColor.AutoSize = true;
-            this.checkBox_pngHmColor.Location = new System.Drawing.Point(171, 15);
+            this.checkBox_pngHmColor.Location = new System.Drawing.Point(220, 15);
             this.checkBox_pngHmColor.Name = "checkBox_pngHmColor";
-            this.checkBox_pngHmColor.Size = new System.Drawing.Size(84, 17);
+            this.checkBox_pngHmColor.Size = new System.Drawing.Size(89, 17);
             this.checkBox_pngHmColor.TabIndex = 34;
-            this.checkBox_pngHmColor.Text = "enable color";
+            this.checkBox_pngHmColor.Text = "enable colors";
             this.checkBox_pngHmColor.UseVisualStyleBackColor = true;
             this.checkBox_pngHmColor.CheckedChanged += new System.EventHandler(this.checkBox_pngHmColor_CheckedChanged);
             // 
@@ -469,7 +475,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(397, 127);
+            this.label6.Location = new System.Drawing.Point(386, 128);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 17;
@@ -478,22 +484,24 @@
             // textBox_scale
             // 
             this.textBox_scale.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_scale.Location = new System.Drawing.Point(433, 124);
-            this.textBox_scale.MaxLength = 16;
+            this.textBox_scale.Location = new System.Drawing.Point(423, 125);
+            this.textBox_scale.MaxLength = 8;
             this.textBox_scale.Name = "textBox_scale";
-            this.textBox_scale.Size = new System.Drawing.Size(60, 20);
+            this.textBox_scale.Size = new System.Drawing.Size(40, 20);
             this.textBox_scale.TabIndex = 0;
             this.textBox_scale.TextChanged += new System.EventHandler(this.textBox_scale_TextChanged);
             // 
             // groupBox_obj
             // 
             this.groupBox_obj.Controls.Add(this.textBox_objSlowValue);
+            this.groupBox_obj.Controls.Add(this.label7);
+            this.groupBox_obj.Controls.Add(this.label8);
             this.groupBox_obj.Controls.Add(this.label5);
             this.groupBox_obj.Controls.Add(this.textBox_objGridSize);
             this.groupBox_obj.Controls.Add(this.label_objGrid);
-            this.groupBox_obj.Location = new System.Drawing.Point(16, 198);
+            this.groupBox_obj.Location = new System.Drawing.Point(16, 149);
             this.groupBox_obj.Name = "groupBox_obj";
-            this.groupBox_obj.Size = new System.Drawing.Size(137, 65);
+            this.groupBox_obj.Size = new System.Drawing.Size(137, 114);
             this.groupBox_obj.TabIndex = 37;
             this.groupBox_obj.TabStop = false;
             this.groupBox_obj.Text = "OBJ";
@@ -501,7 +509,7 @@
             // textBox_objSlowValue
             // 
             this.textBox_objSlowValue.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_objSlowValue.Location = new System.Drawing.Point(72, 39);
+            this.textBox_objSlowValue.Location = new System.Drawing.Point(71, 87);
             this.textBox_objSlowValue.MaxLength = 16;
             this.textBox_objSlowValue.Name = "textBox_objSlowValue";
             this.textBox_objSlowValue.Size = new System.Drawing.Size(60, 20);
@@ -511,7 +519,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 41);
+            this.label5.Location = new System.Drawing.Point(6, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 17;
@@ -520,7 +528,7 @@
             // textBox_objGridSize
             // 
             this.textBox_objGridSize.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_objGridSize.Location = new System.Drawing.Point(53, 13);
+            this.textBox_objGridSize.Location = new System.Drawing.Point(53, 18);
             this.textBox_objGridSize.MaxLength = 16;
             this.textBox_objGridSize.Name = "textBox_objGridSize";
             this.textBox_objGridSize.Size = new System.Drawing.Size(78, 20);
@@ -530,7 +538,7 @@
             // label_objGrid
             // 
             this.label_objGrid.AutoSize = true;
-            this.label_objGrid.Location = new System.Drawing.Point(6, 16);
+            this.label_objGrid.Location = new System.Drawing.Point(6, 21);
             this.label_objGrid.Name = "label_objGrid";
             this.label_objGrid.Size = new System.Drawing.Size(47, 13);
             this.label_objGrid.TabIndex = 17;
@@ -618,6 +626,53 @@
             this.textBox_debug.Size = new System.Drawing.Size(621, 373);
             this.textBox_debug.TabIndex = 39;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.label7.Location = new System.Drawing.Point(8, 43);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(121, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "___________________";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 71);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(114, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Optional alt. algorythm:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(480, 128);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Color limit";
+            // 
+            // textBox_colorlimit
+            // 
+            this.textBox_colorlimit.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_colorlimit.Location = new System.Drawing.Point(534, 125);
+            this.textBox_colorlimit.MaxLength = 4;
+            this.textBox_colorlimit.Name = "textBox_colorlimit";
+            this.textBox_colorlimit.Size = new System.Drawing.Size(40, 20);
+            this.textBox_colorlimit.TabIndex = 0;
+            this.textBox_colorlimit.TextChanged += new System.EventHandler(this.textBox_colorlimit_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(138, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "(max. 2016)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,10 +685,12 @@
             this.Controls.Add(this.label_dashOutput);
             this.Controls.Add(this.label_dashInput);
             this.Controls.Add(this.groupBox_obj);
+            this.Controls.Add(this.textBox_colorlimit);
             this.Controls.Add(this.textBox_scale);
             this.Controls.Add(this.groupBox_schematic);
             this.Controls.Add(this.groupBox_png);
             this.Controls.Add(this.checkBox_excavate);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.checkBox_verbose);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.checkBox_help);
@@ -728,6 +785,11 @@
         private System.Windows.Forms.Label label_dashInput;
         private System.Windows.Forms.Label label_dashOutput;
         private System.Windows.Forms.TextBox textBox_debug;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox_colorlimit;
     }
 }
 

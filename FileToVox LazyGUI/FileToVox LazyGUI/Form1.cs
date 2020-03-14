@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox LazyGUI v1.0
-// PatrikRoy 12/2019 (https://github.com/patrikroy)
+// FileToVox LazyGUI v1.1
+// PatrikRoy 03/2020 (https://github.com/patrikroy)
 // DISCLAIMER: I'm no coder, prepare to facepalm.
 
 namespace FileToVox_LazyGUI
@@ -24,7 +24,7 @@ namespace FileToVox_LazyGUI
         string f2vChos, inputChos, outputChos; // 0=no, 1=yes
         int countBackslash;
         string outputCmd, f2vPath, f2vPathDisp, inputPath, inputPathDisp, inputBackslash, outputPath, outputFilenameNoExt, outputPathDisp;
-        string chk_Help, chk_Verbose, chk_Excavate, scale;
+        string chk_Help, chk_Verbose, chk_Excavate, scale, colorlimit;
         string schematicIminy, schematicImaxy, chk_schematicWay;
         string pngHmValue, chk_pngHmColor, pngColorFilePath, pngColorFilePathDisp;
         string objGridSize, objSlowValue;
@@ -99,7 +99,7 @@ namespace FileToVox_LazyGUI
                 + chk_Help + chk_Verbose 
                 + chk_schematicWay + schematicIminy + schematicImaxy 
                 + chk_Excavate 
-                + scale
+                + scale + colorlimit
                 + pngHmValue + chk_pngHmColor + pngColorFilePathDisp 
                 + objGridSize + objSlowValue 
                 + inputPathDisp + outputPathDisp + "\"";
@@ -213,6 +213,15 @@ namespace FileToVox_LazyGUI
             updateOutputCmd();
         }
 
+        // Color limit
+        private void textBox_colorlimit_TextChanged(object sender, EventArgs e)
+        {
+            colorlimit = textBox_colorlimit.Text;
+            colorlimit = " --cl " + colorlimit;
+            if (textBox_colorlimit.Text == "") { colorlimit = ""; }
+            updateOutputCmd();
+        }
+
         // Schematic
         // Iminy
         private void textBox_schematicIminy_TextChanged(object sender, EventArgs e)
@@ -299,7 +308,7 @@ namespace FileToVox_LazyGUI
                 CheckPathExists = true,
 
                 DefaultExt = "png",
-                Filter = "FileToVox files (*.schematic, *.png, *.asc, *.binvox, *.obj, *.qb, *.ply, *.xyz) | *.schematic; *.png; *.asc; *.binvox; *.obj; *.qb; *.ply; *.xyz",
+                Filter = "FileToVox files (*.schematic, *.png, *.asc, *.binvox, *.obj, *.qb, *.ply, *.xyz, *.tif) | *.schematic; *.png; *.asc; *.binvox; *.obj; *.qb; *.ply; *.xyz; *.tif",
                 FilterIndex = 1,
                 RestoreDirectory = true,
 
