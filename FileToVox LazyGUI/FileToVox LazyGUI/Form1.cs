@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox LazyGUI v1.1
+// FileToVox LazyGUI v1.2
 // PatrikRoy 03/2020 (https://github.com/patrikroy)
 // DISCLAIMER: I'm no coder, prepare to facepalm.
 
@@ -28,6 +28,7 @@ namespace FileToVox_LazyGUI
         string schematicIminy, schematicImaxy, chk_schematicWay;
         string pngHmValue, chk_pngHmColor, pngColorFilePath, pngColorFilePathDisp;
         string objGridSize, objSlowValue;
+        string chk_cpFlood, chk_cpFixHoles;
 
 
         public Form1()
@@ -101,7 +102,8 @@ namespace FileToVox_LazyGUI
                 + chk_Excavate 
                 + scale + colorlimit
                 + pngHmValue + chk_pngHmColor + pngColorFilePathDisp 
-                + objGridSize + objSlowValue 
+                + objGridSize + objSlowValue
+                + chk_cpFlood + chk_cpFixHoles
                 + inputPathDisp + outputPathDisp + "\"";
 
             if (textBox_outputCmd.Text.Length <= 2) { outputCmd = textBox_outputCmd.Text = ""; } // no path left in outputCmd? clear it
@@ -160,6 +162,20 @@ namespace FileToVox_LazyGUI
         private void checkBox_pngHmColor_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_pngHmColor.Checked) { chk_pngHmColor = " --c"; } else { chk_pngHmColor = ""; }
+            updateOutputCmd();
+        }
+
+        // Cloud point files
+        // flood
+        private void checkBox_cpFlood_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_cpFlood.Checked) { chk_cpFlood = " --flood"; } else { chk_cpFlood = ""; }
+            updateOutputCmd();
+        }
+        // fix holes
+        private void checkBox_cpFixHoles_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_cpFixHoles.Checked) { chk_cpFixHoles = " --fix-holes"; } else { chk_cpFixHoles = ""; }
             updateOutputCmd();
         }
 
