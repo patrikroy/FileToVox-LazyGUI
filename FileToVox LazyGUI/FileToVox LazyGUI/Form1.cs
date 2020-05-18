@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox LazyGUI v1.2
-// PatrikRoy 03/2020 (https://github.com/patrikroy)
+// FileToVox LazyGUI v1.3
+// PatrikRoy 05/2020 (https://github.com/patrikroy)
 // DISCLAIMER: I'm no coder, prepare to facepalm.
 
 namespace FileToVox_LazyGUI
@@ -21,14 +21,15 @@ namespace FileToVox_LazyGUI
         // Global variables
         string defaultGUIPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         string myCompPath = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
-        string f2vChos, inputChos, outputChos; // 0=no, 1=yes
+        string f2vChos, inputChos, outputChos, paletteFilePathChos, pngColorFilePathChos; // 0=no, 1=yes
         int countBackslash;
-        string outputCmd, f2vPath, f2vPathDisp, inputPath, inputPathDisp, inputBackslash, outputPath, outputFilenameNoExt, outputPathDisp;
-        string chk_Help, chk_Verbose, chk_Excavate, scale, colorlimit;
+        string outputCmd, f2vPath, f2vPathDisp, inputPath, inputPathDisp, outputPath, outputFilenameNoExt, outputPathDisp;
+        string paletteFilePath, paletteFilePathDisp;
+        string chk_Help, chk_Verbose, chk_Excavate, chk_Slices, scale, colorlimit;
         string schematicIminy, schematicImaxy, chk_schematicWay;
         string pngHmValue, chk_pngHmColor, pngColorFilePath, pngColorFilePathDisp;
         string objGridSize, objSlowValue;
-        string chk_cpFlood, chk_cpFixHoles;
+        string chk_cpFlood, chk_cpFixHoles, chk_cpFixLonely;
 
 
         public Form1()
@@ -51,8 +52,8 @@ namespace FileToVox_LazyGUI
             if (inputChos == "1")
             {
                 // Input file has been chosen
-                inputPathDisp = " --i \"" + inputPath + "\""; // make input file display from user's choice
-                outputFilenameNoExt = System.IO.Path.GetFileNameWithoutExtension(inputPath); // get output filename from input filename without extension
+                inputPathDisp = " --i \"" + inputPath + "\""; // create input file display from user's choice
+                outputFilenameNoExt = System.IO.Path.GetFileNameWithoutExtension(inputPath); // create output filename from input filename without extension
 
                 // Does output directory has been chosen?
                 if (outputChos != "1")
@@ -84,7 +85,18 @@ namespace FileToVox_LazyGUI
 
             }
 
-            // pngColorFile
+            // paletteFilePath
+            if (string.IsNullOrEmpty(paletteFilePath))
+            {
+                // Palette file is not selected, display nothing
+            }
+            else
+            {
+                // Palette file has been chosen
+                paletteFilePathDisp = " --palette \"" + paletteFilePath + "\""; // create palette file display from user's choice
+            }
+
+            // pngColorFilePath
             if (string.IsNullOrEmpty(pngColorFilePath))
             {
                 // Color file is not selected, display nothing
@@ -97,32 +109,16 @@ namespace FileToVox_LazyGUI
 
             // build outputCmd from all that collected stuff, and wrap it in quotation marks (mandatory for launching an executable as a cmd.exe argument)
             textBox_outputCmd.Text = outputCmd = "\"" + f2vPathDisp
-                + chk_Help + chk_Verbose 
+                + paletteFilePathDisp 
+                + chk_Help + chk_Verbose + chk_Excavate + chk_Slices 
                 + chk_schematicWay + schematicIminy + schematicImaxy 
-                + chk_Excavate 
                 + scale + colorlimit
                 + pngHmValue + chk_pngHmColor + pngColorFilePathDisp 
                 + objGridSize + objSlowValue
-                + chk_cpFlood + chk_cpFixHoles
+                + chk_cpFlood + chk_cpFixHoles + chk_cpFixLonely 
                 + inputPathDisp + outputPathDisp + "\"";
 
             if (textBox_outputCmd.Text.Length <= 2) { outputCmd = textBox_outputCmd.Text = ""; } // no path left in outputCmd? clear it
-
-            // Debug textBox
-            textBox_debug.Text = "Debug \r\n" 
-                + "f2vPath | " + f2vPath + "\r\n"
-                + "f2vPathDisp | " + f2vPathDisp + "\r\n"
-                + "f2vChos | " + f2vChos + "\r\n"
-                + "inputPath | " + inputPath + "\r\n"
-                + "inputPathDisp | " + inputPathDisp + "\r\n"
-                + "inputChos | " + inputChos + "\r\n"
-                + "inputBackslash | " + inputBackslash + "\r\n"
-                + "outputPath | " + outputPath + "\r\n"
-                + "outputFilenameNoExt | " + outputFilenameNoExt + "\r\n"
-                + "outputPathDisp | " + outputPathDisp + "\r\n"
-                + "outputChos | " + outputChos + "\r\n"
-                + "pngColorFilePath | " + pngColorFilePath + "\r\n"
-                + "pngColorFilePathDisp | " + pngColorFilePathDisp;
         }
 
 
@@ -148,8 +144,15 @@ namespace FileToVox_LazyGUI
             updateOutputCmd();
         }
 
+        // Slices
+        private void checkBox_slices_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_slices.Checked) { chk_Slices = " --slices"; } else { chk_Slices = ""; }
+            updateOutputCmd();
+        }
+
         // Schematic
-        // Way
+        // Way (deprecated since FileToVox v1.8.4)
         private void checkBox_schematicWay_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_schematicWay.Checked) { chk_schematicWay = " --w 1"; } else { chk_schematicWay = ""; }
@@ -178,6 +181,12 @@ namespace FileToVox_LazyGUI
             if (checkBox_cpFixHoles.Checked) { chk_cpFixHoles = " --fix-holes"; } else { chk_cpFixHoles = ""; }
             updateOutputCmd();
         }
+        // fix lonely
+        private void checkBox_cpFixLonely_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_cpFixLonely.Checked) { chk_cpFixLonely = " --fix-lonely"; } else { chk_cpFixLonely = ""; }
+            updateOutputCmd();
+        }
 
 
         // ---------------------------- Values --------------------------------
@@ -204,7 +213,7 @@ namespace FileToVox_LazyGUI
                 inputChos = "0";
             }
             countBackslash = inputPath.Count(x => x == '\\'); // count input path backslashes
-            inputBackslash = countBackslash.ToString(); // extract a string for debug
+            // inputBackslash = countBackslash.ToString(); // extract a string for debug
             updateOutputCmd();
         }
 
@@ -216,6 +225,19 @@ namespace FileToVox_LazyGUI
             {
                 outputPath = outputPathDisp = "";
                 outputChos = "0";
+            }
+            updateOutputCmd();
+        }
+
+        //Palette File
+        private void textBox_paletteFilePath_TextChanged(object sender, EventArgs e)
+        {
+            paletteFilePathChos = "1";
+            paletteFilePath = textBox_paletteFilePath.Text;
+            if (textBox_paletteFilePath.Text.Length <= 0)
+            {
+                paletteFilePath = paletteFilePathDisp = "";
+                paletteFilePathChos = "0";
             }
             updateOutputCmd();
         }
@@ -264,6 +286,18 @@ namespace FileToVox_LazyGUI
             pngHmValue = textBox_pngHmValue.Text;
             pngHmValue = " --hm " + pngHmValue;
             if (textBox_pngHmValue.Text == "" ) { pngHmValue = ""; }
+            updateOutputCmd();
+        }
+        //Color from File
+        private void textBox_pngColorFilePath_TextChanged(object sender, EventArgs e)
+        {
+            pngColorFilePathChos = "1";
+            pngColorFilePath = textBox_pngColorFilePath.Text;
+            if (textBox_pngColorFilePath.Text.Length <= 0)
+            {
+                pngColorFilePath = pngColorFilePathDisp = "";
+                pngColorFilePathChos = "0";
+            }
             updateOutputCmd();
         }
 
@@ -359,8 +393,32 @@ namespace FileToVox_LazyGUI
             }
         }
 
+        // Palette file
+        private void button_paletteFilePath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog paletteFilePathDialog = new OpenFileDialog
+            {
+                InitialDirectory = defaultGUIPath,
+                Title = "Palette file location",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                Filter = "PNG image (*.png) | *.png",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+                ShowReadOnly = false
+            };
+
+            if (paletteFilePathDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox_paletteFilePath.Text = paletteFilePath = paletteFilePathDialog.FileName;
+                updateOutputCmd();
+            }
+        }
+
         // PNG Color file
-        private void button_pngColorFile_Click(object sender, EventArgs e)
+        private void button_pngColorFilePath_Click(object sender, EventArgs e)
         {
             OpenFileDialog pngColorFilePathDialog = new OpenFileDialog
             {
@@ -373,13 +431,12 @@ namespace FileToVox_LazyGUI
                 Filter = "PNG image (*.png) | *.png",
                 FilterIndex = 1,
                 RestoreDirectory = true,
-
                 ShowReadOnly = false
             };
 
             if (pngColorFilePathDialog.ShowDialog() == DialogResult.OK)
             {
-                textBox_pngColorFile.Text = pngColorFilePath = pngColorFilePathDialog.FileName;
+                textBox_pngColorFilePath.Text = pngColorFilePath = pngColorFilePathDialog.FileName;
                 updateOutputCmd();
             }
         }
@@ -403,7 +460,7 @@ namespace FileToVox_LazyGUI
 
         private void linkPatrik_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://patrikroy.art/");
+            System.Diagnostics.Process.Start("https://github.com/patrikroy");
         }
 
         private void linkDiscord_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -413,7 +470,7 @@ namespace FileToVox_LazyGUI
 
         private void linkWiki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://mvc.wiki/");
+            System.Diagnostics.Process.Start("https://magicavoxel.fandom.com");
         }
 
     }
