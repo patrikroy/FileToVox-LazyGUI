@@ -223,9 +223,9 @@
             this.label_ver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_ver.Location = new System.Drawing.Point(201, 15);
             this.label_ver.Name = "label_ver";
-            this.label_ver.Size = new System.Drawing.Size(36, 16);
+            this.label_ver.Size = new System.Drawing.Size(45, 16);
             this.label_ver.TabIndex = 23;
-            this.label_ver.Text = "v1.3";
+            this.label_ver.Text = "v1.3b";
             this.label_ver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox_outputCmd
@@ -240,9 +240,9 @@
             // 
             // textBox_f2vPath
             // 
-            this.textBox_f2vPath.Location = new System.Drawing.Point(155, 45);
+            this.textBox_f2vPath.Location = new System.Drawing.Point(154, 45);
             this.textBox_f2vPath.Name = "textBox_f2vPath";
-            this.textBox_f2vPath.Size = new System.Drawing.Size(334, 20);
+            this.textBox_f2vPath.Size = new System.Drawing.Size(335, 20);
             this.textBox_f2vPath.TabIndex = 14;
             this.textBox_f2vPath.TextChanged += new System.EventHandler(this.textBox_f2vPath_TextChanged);
             // 
@@ -252,9 +252,9 @@
             this.label_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_1.Location = new System.Drawing.Point(8, 48);
             this.label_1.Name = "label_1";
-            this.label_1.Size = new System.Drawing.Size(111, 13);
+            this.label_1.Size = new System.Drawing.Size(143, 13);
             this.label_1.TabIndex = 12;
-            this.label_1.Text = "1 - FileToVox path";
+            this.label_1.Text = "1 - Where is FileToVox?";
             // 
             // openFileDialog_inputfile
             // 
@@ -276,23 +276,23 @@
             this.label_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_3.Location = new System.Drawing.Point(8, 100);
             this.label_3.Name = "label_3";
-            this.label_3.Size = new System.Drawing.Size(114, 13);
+            this.label_3.Size = new System.Drawing.Size(93, 13);
             this.label_3.TabIndex = 17;
-            this.label_3.Text = "3 - Output file path";
+            this.label_3.Text = "3 - Output path";
             // 
             // textBox_outputFile
             // 
-            this.textBox_outputFile.Location = new System.Drawing.Point(155, 97);
+            this.textBox_outputFile.Location = new System.Drawing.Point(154, 97);
             this.textBox_outputFile.Name = "textBox_outputFile";
-            this.textBox_outputFile.Size = new System.Drawing.Size(334, 20);
+            this.textBox_outputFile.Size = new System.Drawing.Size(335, 20);
             this.textBox_outputFile.TabIndex = 13;
             this.textBox_outputFile.TextChanged += new System.EventHandler(this.textBox_outputFile_TextChanged);
             // 
             // textBox_inputFile
             // 
-            this.textBox_inputFile.Location = new System.Drawing.Point(155, 71);
+            this.textBox_inputFile.Location = new System.Drawing.Point(154, 71);
             this.textBox_inputFile.Name = "textBox_inputFile";
-            this.textBox_inputFile.Size = new System.Drawing.Size(334, 20);
+            this.textBox_inputFile.Size = new System.Drawing.Size(335, 20);
             this.textBox_inputFile.TabIndex = 16;
             this.textBox_inputFile.TextChanged += new System.EventHandler(this.textBox_inputFile_TextChanged);
             // 
@@ -300,11 +300,11 @@
             // 
             this.label_2.AutoSize = true;
             this.label_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_2.Location = new System.Drawing.Point(8, 75);
+            this.label_2.Location = new System.Drawing.Point(8, 74);
             this.label_2.Name = "label_2";
-            this.label_2.Size = new System.Drawing.Size(105, 13);
+            this.label_2.Size = new System.Drawing.Size(104, 13);
             this.label_2.TabIndex = 11;
-            this.label_2.Text = "2 - Input file path";
+            this.label_2.Text = "2 - And your file?";
             // 
             // label_4
             // 
@@ -642,7 +642,7 @@
             // 
             this.label_dashInput.AutoSize = true;
             this.label_dashInput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dashInput.Location = new System.Drawing.Point(126, 73);
+            this.label_dashInput.Location = new System.Drawing.Point(124, 73);
             this.label_dashInput.Name = "label_dashInput";
             this.label_dashInput.Size = new System.Drawing.Size(28, 15);
             this.label_dashInput.TabIndex = 17;
@@ -653,7 +653,7 @@
             // 
             this.label_dashOutput.AutoSize = true;
             this.label_dashOutput.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dashOutput.Location = new System.Drawing.Point(126, 99);
+            this.label_dashOutput.Location = new System.Drawing.Point(124, 99);
             this.label_dashOutput.Name = "label_dashOutput";
             this.label_dashOutput.Size = new System.Drawing.Size(28, 15);
             this.label_dashOutput.TabIndex = 17;
@@ -736,9 +736,9 @@
             // 
             // textBox_paletteFilePath
             // 
-            this.textBox_paletteFilePath.Location = new System.Drawing.Point(155, 176);
+            this.textBox_paletteFilePath.Location = new System.Drawing.Point(154, 176);
             this.textBox_paletteFilePath.Name = "textBox_paletteFilePath";
-            this.textBox_paletteFilePath.Size = new System.Drawing.Size(334, 20);
+            this.textBox_paletteFilePath.Size = new System.Drawing.Size(335, 20);
             this.textBox_paletteFilePath.TabIndex = 41;
             this.textBox_paletteFilePath.TextChanged += new System.EventHandler(this.textBox_paletteFilePath_TextChanged);
             // 
@@ -746,7 +746,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(83, 178);
+            this.label11.Location = new System.Drawing.Point(81, 178);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 15);
             this.label11.TabIndex = 43;
@@ -766,7 +766,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(241, 17);
+            this.label13.Location = new System.Drawing.Point(245, 17);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(138, 13);
             this.label13.TabIndex = 44;

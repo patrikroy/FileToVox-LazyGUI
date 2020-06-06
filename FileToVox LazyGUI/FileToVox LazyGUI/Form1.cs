@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-// FileToVox LazyGUI v1.3
+// FileToVox LazyGUI v1.3.1
 // PatrikRoy 05/2020 (https://github.com/patrikroy)
 // DISCLAIMER: I'm no coder, prepare to facepalm.
 
@@ -58,8 +58,8 @@ namespace FileToVox_LazyGUI
                 // Does output directory has been chosen?
                 if (outputChos != "1")
                 {
-                    // No, so make it the same as inputPathFull, without file extension
-                    outputPath = System.IO.Path.GetDirectoryName(inputPath);
+                    // No
+                    outputPath = System.IO.Path.GetDirectoryName(inputPath);  // make it the same as inputPathFull, without file extension
                     if (countBackslash < 2) // if input file in root, adapt output
                     {
                         outputPathDisp = " --o \"" + outputPath + outputFilenameNoExt + "\"";
@@ -75,7 +75,7 @@ namespace FileToVox_LazyGUI
                     // Yes, keep the user's choice
                     if (outputPath.EndsWith("\\"))
                     {
-                        outputPathDisp = " --o \"" + outputPath + outputFilenameNoExt + "\"";
+                        outputPathDisp = " --o \"" + outputPath + outputFilenameNoExt + "\""; // if chosen path ends with a slash, add the original filename without extension
                     }
                     else
                     {
@@ -246,7 +246,7 @@ namespace FileToVox_LazyGUI
         private void textBox_scale_TextChanged(object sender, EventArgs e)
         {
             scale = textBox_scale.Text;
-            scale = " --s " + scale;
+            scale = " --sc " + scale;
             if (textBox_scale.Text == "") { scale = ""; }
             updateOutputCmd();
         }
